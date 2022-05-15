@@ -3,22 +3,22 @@ import random
 
 class MP3Calar():
 
-    def __init__(self,sarkiListesi = []):
+    def __init__(self, sarkiListesi=[]):
         self.suanCalanSarki = ""
         self.ses = 100
         self.sarkiListesi = sarkiListesi
         self.durum = True
 
     def sarkiSec(self):
-        secim = input("{} hangi şarkıyı seçmek istersiniz: ".format(self.sarkiListesi))
-        for i in self.sarkiListesi:
-            if secim == i:
+
+        while True:
+            secim = input("{} hangi şarkıyı seçmek istersiniz: ".format(self.sarkiListesi))
+            if secim in self.sarkiListesi:
+
                 self.suanCalanSarki = secim
                 break
-            else :
+            else:
                 print("hatalı şarkı")
-                ### başka tuşlama yapınca kontrol edilip fonksiyon tekrar başlatılacak
-
 
     def sesArttir(self):
         self.ses += 5
@@ -37,7 +37,7 @@ class MP3Calar():
         self.suanCalanSarki = rastgele
 
     def sarkiEkle(self):
-        yeniSarki = self.sarkiListesi.append(input("Eklenecek Şarkı İsmini Giriniz: "))
+        self.sarkiListesi.append(input("Eklenecek Şarkı İsmini Giriniz: "))
 
     def sarkiSil(self):
         print("Silinecek Şarkı Sırasını Giriniz(1-{}): ".format(len(self.sarkiListesi)))
@@ -45,7 +45,7 @@ class MP3Calar():
 
         while sil < 1 or sil > len(self.sarkiListesi):
             sil = int(input("Lütfen belirtilen araklıkda giriniz(1-{}): ".format(len(self.sarkiListesi))))
-        self.sarkiListesi.pop(sil-1)
+        self.sarkiListesi.pop(sil - 1)
 
     def kapa(self):
         self.durum = False
@@ -53,7 +53,9 @@ class MP3Calar():
 
     def menuGoster(self):
         print("Şarkı Listesi:{}\nŞuan Çalan Şarkı:{}\nSes:{}\n\n1-Şarkı Seç\n2-Ses Arttır\n"
-        "3-Ses Azalt\n4-Rastgele Şarkı Seç\n5-Şarkı Ekle\n6-Şarkı Sil\n7-Kapat\n".format(self.sarkiListesi,self.suanCalanSarki,self.ses))
+              "3-Ses Azalt\n4-Rastgele Şarkı Seç\n5-Şarkı Ekle\n6-Şarkı Sil\n7-Kapat\n".format(self.sarkiListesi,
+                                                                                               self.suanCalanSarki,
+                                                                                               self.ses))
 
     def secim(self):
         sec = int(input("Seçiminizi Giriniz: "))
@@ -81,10 +83,6 @@ class MP3Calar():
             self.kapa()
 
 
-
 mp3calar = MP3Calar()
 while mp3calar.durum:
     mp3calar.calistir()
-
-
-
